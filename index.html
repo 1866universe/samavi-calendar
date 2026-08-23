@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <!-- =========================================================
+       PRODUCT INFORMATION
+       Change the description for each product.
+  ========================================================== -->
+  <meta
+    name="description"
+    content="Samavi Calendar — A bilingual astronomical research model based on meridian transit and lunar angular cycles. تقویم سماوی، یک مدل پژوهشی نجومی دوزبانه."
+  />
+
+  <!-- Change the browser-tab title for each product. -->
+  <title>Samavi Calendar | تقویم سماوی</title>
+
+  <!--
+    Change v=1 to v=2 whenever the favicon file is replaced.
+    This helps browsers load the new icon instead of the cached one.
+  -->
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="./favicon.png?v=1"
+  />
+
+  <style>
+    /* =========================================================
+       1. GENERAL DESIGN SETTINGS
+       تنظیمات عمومی صفحه و کارت اصلی
+    ========================================================== */
+    :root {
+      color-scheme: dark;
+
+      /* Page background — پس‌زمینه صفحه */
+      --page-bg-start: #1e293b;
+      --page-bg-middle: #0f172a;
+      --page-bg-end: #020617;
+
+      /* Main card — کارت اصلی */
+      --card-max-width: 1080px;
+      --card-bg: rgba(15, 23, 42, 0.88);
+      --card-border: #334155;
+      --card-radius: 24px;
+      --card-padding: 42px;
+      --card-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+
+      /* Space between text and image columns */
+      --layout-gap: 42px;
+
+      /* Text colors — رنگ متن‌ها */
+      --text-main: #f8fafc;
+      --text-body: #e2e8f0;
+      --text-muted: #94a3b8;
+
+      /* Accent color — رنگ اصلی محصول */
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --accent-text: #082f49;
+      --accent-shadow: rgba(56, 189, 248, 0.28);
+
+      /* Secondary buttons — دکمه‌های ثانویه */
+      --secondary-bg: rgba(30, 41, 59, 0.72);
+      --secondary-hover-bg: rgba(51, 65, 85, 0.9);
+      --secondary-border: #334155;
+      --secondary-hover-border: #64748b;
+
+      /* Status badge — نشان وضعیت انتشار */
+      --badge-bg: rgba(56, 189, 248, 0.12);
+      --badge-text: #7dd3fc;
+      --badge-border: rgba(56, 189, 248, 0.3);
+
+      /* Persian section divider */
+      --language-divider: rgba(148, 163, 184, 0.24);
+
+      /* =====================================================
+         SHARED IMAGE SETTINGS
+         تنظیمات مشترک کارت تصویر
+
+         Usually, these values do not need to be changed.
+      ====================================================== */
+
+      --image-card-border: #334155;
+      /* رنگ حاشیه کارت تصویر */
+
+      --image-card-margin: 0;
+      /* فاصله بیرونی کارت تصویر */
+
+      --product-image-width: 100%;
+      /* عرض خود تصویر نسبت به فضای داخلی کارت */
+
+      --product-image-bg: transparent;
+      /* رنگ پشت خود تصویر، مخصوص تصاویر شفاف */
+
+      /*
+        The following variables receive their values from
+        one of the three presets:
+
+        preset-book
+        preset-software
+        preset-logo
+      */
+    }
+
+    /* =========================================================
+       2. PRODUCT IMAGE PRESETS
+       پیش‌تنظیم‌های کارت تصویر
+
+       فقط یکی از این کلاس‌ها را در تگ <main> قرار دهید:
+
+       preset-book
+       preset-software
+       preset-logo
+    ========================================================== */
+
+    /* ---------------------------------------------------------
+       PRESET 1: DIGITAL BOOK COVER
+       پیش‌تنظیم اول: جلد عمودی کتاب دیجیتال
+
+       برای فعال‌سازی:
+       <main class="product-card preset-book">
+    ---------------------------------------------------------- */
+    .preset-book {
+      --media-column-width: 290px;
+      /* عرض ستون مخصوص تصویر جلد کتاب */
+
+      --image-card-bg: rgba(255, 255, 255, 0.05);
+      /* رنگ پس‌زمینه قاب بیرونی تصویر */
+
+      --image-card-radius: 18px;
+      /* میزان گردی گوشه‌های قاب بیرونی تصویر */
+
+      --image-card-padding: 20px;
+      /* فاصله تصویر از چهار طرف قاب بیرونی */
+
+      --product-image-height: 390px;
+      /* ارتفاع تصویر جلد در نمایش دسکتاپ */
+
+      --product-image-height-mobile: 340px;
+      /* ارتفاع تصویر جلد در موبایل */
+
+      --product-image-fit: contain;
+      /* نمایش کامل جلد بدون برش‌خوردگی */
+
+      --product-image-position: center;
+      /* قرارگرفتن تصویر در مرکز قاب */
+
+      --product-image-radius: 5px;
+      /* میزان گردی گوشه‌های خود تصویر جلد */
+    }
+
+    /* ---------------------------------------------------------
+       PRESET 2: SOFTWARE SCREENSHOT
+       پیش‌تنظیم دوم: اسکرین‌شات نرم‌افزار
+
+       برای فعال‌سازی:
+       <main class="product-card preset-software">
+    ---------------------------------------------------------- */
+    .preset-software {
+      --media-column-width: 400px;
+      /* عرض ستون مخصوص اسکرین‌شات نرم‌افزار */
+
+      --image-card-bg: rgba(30, 41, 59, 0.7);
+      /* رنگ پس‌زمینه قاب بیرونی اسکرین‌شات */
+
+      --image-card-radius: 18px;
+      /* میزان گردی گوشه‌های قاب بیرونی */
+
+      --image-card-padding: 12px;
+      /* فاصله اسکرین‌شات از چهار طرف قاب بیرونی */
+
+      --product-image-height: 260px;
+      /* ارتفاع اسکرین‌شات در نمایش دسکتاپ */
+
+      --product-image-height-mobile: 230px;
+      /* ارتفاع اسکرین‌شات در موبایل */
+
+      --product-image-fit: cover;
+      /* پرکردن کامل فضای تصویر با امکان برش جزئی */
+
+      --product-image-position: center top;
+      /* اولویت نمایش بخش بالایی و مرکزی اسکرین‌شات */
+
+      --product-image-radius: 10px;
+      /* میزان گردی گوشه‌های خود اسکرین‌شات */
+    }
+
+    /* ---------------------------------------------------------
+       PRESET 3: PRODUCT LOGO
+       پیش‌تنظیم سوم: لوگو یا نشان محصول
+
+       برای فعال‌سازی:
+       <main class="product-card preset-logo">
+    ---------------------------------------------------------- */
+    .preset-logo {
+      --media-column-width: 260px;
+      /* عرض ستون مخصوص لوگوی محصول */
+
+      --image-card-bg: #ffffff;
+      /* رنگ پس‌زمینه قاب لوگو؛ برای لوگوی فعلی سفید است */
+
+      --image-card-radius: 22px;
+      /* میزان گردی گوشه‌های قاب بیرونی لوگو */
+
+      --image-card-padding: 30px;
+      /* فاصله لوگو از چهار طرف قاب بیرونی */
+
+      --product-image-height: 230px;
+      /* ارتفاع لوگو در نمایش دسکتاپ */
+
+      --product-image-height-mobile: 210px;
+      /* ارتفاع لوگو در موبایل */
+
+      --product-image-fit: contain;
+      /* نمایش کامل لوگو بدون برش‌خوردگی */
+
+      --product-image-position: center;
+      /* قرارگرفتن لوگو در مرکز قاب */
+
+      --product-image-radius: 8px;
+      /* میزان گردی گوشه‌های خود تصویر لوگو */
+    }
+
+    /* =========================================================
+       3. BASIC RESET
+       بازنشانی تنظیمات پیش‌فرض مرورگر
+    ========================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+
+      color: var(--text-body);
+
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          var(--page-bg-start) 0%,
+          var(--page-bg-middle) 52%,
+          var(--page-bg-end) 100%
+        );
+    }
+
+    /* =========================================================
+       4. MAIN PRODUCT CARD
+       کارت اصلی محصول
+    ========================================================== */
+    .product-card {
+      width: 100%;
+      max-width: var(--card-max-width);
+      padding: var(--card-padding);
+
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--card-radius);
+      box-shadow: var(--card-shadow);
+
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .product-layout {
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1fr)
+        var(--media-column-width);
+
+      gap: var(--layout-gap);
+      align-items: center;
+    }
+
+    /* =========================================================
+       5. PRODUCT CONTENT
+       محتوای متنی محصول
+    ========================================================== */
+    .product-content {
+      min-width: 0;
+    }
+
+    /* Status badge — نشان انتشار */
+    .badge {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+
+      margin-bottom: 20px;
+      padding: 7px 12px;
+
+      color: var(--badge-text);
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      border-radius: 999px;
+
+      font-size: 0.82rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .badge-separator {
+      opacity: 0.65;
+    }
+
+    /* Bilingual product title */
+    .product-title {
+      margin-bottom: 24px;
+    }
+
+    .title-en {
+      display: block;
+
+      color: var(--text-main);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 750;
+      line-height: 1.15;
+      letter-spacing: -0.035em;
+    }
+
+    .title-fa {
+      display: block;
+      margin-top: 9px;
+
+      color: var(--text-body);
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      font-size: clamp(1.35rem, 3vw, 1.85rem);
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: normal;
+
+      direction: rtl;
+      text-align: left;
+    }
+
+    /* English text block */
+    .language-block-en {
+      direction: ltr;
+      text-align: left;
+    }
+
+    /* Persian text block */
+    .language-block-fa {
+      margin-top: 18px;
+      padding-top: 18px;
+
+      direction: rtl;
+      text-align: right;
+
+      border-top: 1px solid var(--language-divider);
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+    }
+
+    .summary {
+      margin-bottom: 13px;
+
+      color: var(--text-body);
+      font-size: 1.08rem;
+      line-height: 1.85;
+    }
+
+    .description {
+      color: var(--text-body);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .language-block-fa .summary {
+      line-height: 2;
+    }
+
+    .language-block-fa .description {
+      line-height: 2;
+    }
+
+    /* =========================================================
+       6. BUTTONS
+       دکمه‌های مستندات و دانلود
+    ========================================================== */
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 28px;
+    }
+
+    .button {
+      min-height: 50px;
+      padding: 11px 20px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      color: var(--text-main);
+      background: var(--secondary-bg);
+      border: 1px solid var(--secondary-border);
+      border-radius: 11px;
+
+      text-align: center;
+      text-decoration: none;
+      font-size: 0.96rem;
+      font-weight: 650;
+      line-height: 1.3;
+
+      transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: var(--secondary-hover-bg);
+      border-color: var(--secondary-hover-border);
+    }
+
+    .button:focus-visible {
+      outline: 3px solid rgba(56, 189, 248, 0.45);
+      outline-offset: 3px;
+    }
+
+    /* Primary English README button */
+    .button.primary {
+      color: var(--accent-text);
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 5px 18px var(--accent-shadow);
+    }
+
+    .button.primary:hover {
+      color: #ffffff;
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
+      box-shadow: 0 8px 24px var(--accent-shadow);
+    }
+
+    /* Bilingual download button */
+    .button-bilingual {
+      min-width: 178px;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .button-bilingual .button-en {
+      display: block;
+      font-size: 0.96rem;
+      font-weight: 700;
+    }
+
+    .button-bilingual .button-fa {
+      display: block;
+
+      color: var(--text-muted);
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+
+      direction: rtl;
+    }
+
+    .button-bilingual:hover .button-fa {
+      color: var(--text-body);
+    }
+
+    /* =========================================================
+       7. PRODUCT IMAGE CARD
+       کارت تصویر محصول
+    ========================================================== */
+    .product-media {
+      width: 100%;
+      margin: var(--image-card-margin);
+      padding: var(--image-card-padding);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: var(--image-card-bg);
+      border: 1px solid var(--image-card-border);
+      border-radius: var(--image-card-radius);
+
+      overflow: hidden;
+    }
+
+    .product-image {
+      display: block;
+
+      width: var(--product-image-width);
+      height: var(--product-image-height);
+
+      object-fit: var(--product-image-fit);
+      object-position: var(--product-image-position);
+
+      background: var(--product-image-bg);
+      border-radius: var(--product-image-radius);
+    }
+
+    /* =========================================================
+       8. BILINGUAL FOOTNOTE
+       یادداشت پایانی دوزبانه
+    ========================================================== */
+    .note {
+      margin-top: 34px;
+      padding-top: 21px;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .note p {
+      margin: 0;
+
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.75;
+    }
+
+    .note-fa {
+      margin-top: 8px !important;
+
+      direction: rtl;
+      text-align: right;
+
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      line-height: 2 !important;
+    }
+
+    /* =========================================================
+       9. RESPONSIVE DESIGN
+       تنظیمات تبلت و موبایل
+    ========================================================== */
+    @media (max-width: 820px) {
+      :root {
+        --card-padding: 30px;
+        --layout-gap: 30px;
+      }
+
+      .product-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .product-media {
+        grid-row: 1;
+        width: 100%;
+        max-width: 430px;
+        margin-inline: auto;
+      }
+
+      .product-content {
+        grid-row: 2;
+      }
+
+      .product-image {
+        height: var(--product-image-height-mobile);
+      }
+    }
+
+    @media (max-width: 560px) {
+      :root {
+        --card-padding: 23px;
+        --card-radius: 18px;
+      }
+
+      body {
+        padding: 14px;
+        align-items: flex-start;
+      }
+
+      .product-card {
+        margin-block: 14px;
+      }
+
+      .title-en {
+        font-size: 2rem;
+      }
+
+      .title-fa {
+        font-size: 1.4rem;
+      }
+
+      .summary {
+        font-size: 1rem;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .product-media {
+        max-width: 100%;
+      }
+    }
+
+    /* Accessibility: reduce animations when requested */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       SELECT EXACTLY ONE IMAGE PRESET
+       انتخاب فقط یک پیش‌تنظیم تصویر
+
+       Digital book:
+       class="product-card preset-book"
+
+       Software screenshot:
+       class="product-card preset-software"
+
+       Product logo:
+       class="product-card preset-logo"
+
+       The current product uses the logo preset.
+  ========================================================== -->
+  <main class="product-card preset-logo">
+
+    <div class="product-layout">
+
+      <!-- =====================================================
+           BILINGUAL PRODUCT TEXT AND LINKS
+           اطلاعات دوزبانه محصول
+      ====================================================== -->
+      <section class="product-content">
+
+        <!-- Optional bilingual release badge -->
+        <div class="badge">
+          <span>Public Release · v1.0.0</span>
+
+          <span
+            class="badge-separator"
+            aria-hidden="true"
+          >
+            |
+          </span>
+
+          <span lang="fa" dir="rtl">
+            انتشار عمومی
+          </span>
+        </div>
+
+        <!-- Bilingual product title -->
+        <h1 class="product-title">
+          <span class="title-en">
+            Samavi Calendar
+          </span>
+
+          <span
+            class="title-fa"
+            lang="fa"
+            dir="rtl"
+          >
+            تقویم سماوی
+          </span>
+        </h1>
+
+        <!-- English product introduction -->
+        <div class="language-block-en" lang="en">
+          <p class="summary">
+            An astronomical research model based on meridian transit
+            and lunar angular cycles.
+          </p>
+
+          <p class="description">
+            This repository provides bilingual documentation, public
+            release assets, and project information for the Samavi Calendar.
+          </p>
+        </div>
+
+        <!-- Persian product introduction -->
+        <div
+          class="language-block-fa"
+          lang="fa"
+          dir="rtl"
+        >
+          <p class="summary">
+            یک مدل پژوهشی نجومی مبتنی بر عبور نصف‌النهاری و
+            چرخه‌های زاویه‌ای ماه.
+          </p>
+
+          <p class="description">
+            این مخزن، مستندات دوزبانه، فایل‌های انتشار عمومی و
+            اطلاعات پروژهٔ تقویم سماوی را ارائه می‌کند.
+          </p>
+        </div>
+
+        <!-- Project links -->
+        <nav
+          class="buttons"
+          aria-label="Project documentation and downloads"
+        >
+          <a
+            class="button primary"
+            href="https://github.com/1866universe/samavi-calendar/blob/main/README.md"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            English README
+          </a>
+
+          <a
+            class="button"
+            href="https://github.com/1866universe/samavi-calendar/blob/main/README_FA.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            lang="fa"
+            dir="rtl"
+          >
+            راهنمای فارسی
+          </a>
+
+          <a
+            class="button button-bilingual"
+            href="https://github.com/1866universe/samavi-calendar/releases"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="button-en">
+              Downloads & Installation
+            </span>
+
+            <span
+              class="button-fa"
+              lang="fa"
+              dir="rtl"
+            >
+              دانلود نسخه‌ها و راهنمای نصب
+            </span>
+          </a>
+        </nav>
+      </section>
+
+      <!-- =====================================================
+           PRODUCT IMAGE
+           تصویر محصول
+
+           Change only:
+           1. src = image path
+           2. alt = meaningful bilingual image description
+
+           If the product does not have an image, remove this
+           complete <figure> element.
+      ====================================================== -->
+      <figure class="product-media">
+        <img
+          class="product-image"
+          src="./product-image.png"
+          alt="Samavi Calendar logo — نشان تقویم سماوی"
+        />
+      </figure>
+
+    </div>
+
+    <!-- =======================================================
+         BILINGUAL SHORT PRODUCT NOTE
+         یادداشت کوتاه دوزبانه
+    ======================================================== -->
+    <footer class="note">
+      <p lang="en">
+        Official workbook files are distributed only through GitHub Releases.
+        Recommended for desktop Microsoft Excel 365 or Excel 2021 and later.
+      </p>
+
+      <p
+        class="note-fa"
+        lang="fa"
+        dir="rtl"
+      >
+        فایل‌های رسمی کتاب‌کار فقط از طریق بخش انتشارهای GitHub توزیع
+        می‌شوند. استفاده از نسخهٔ دسکتاپ Microsoft Excel 365 یا
+        Excel 2021 و نسخه‌های جدیدتر توصیه می‌شود.
+      </p>
+    </footer>
+
+  </main>
+</body>
+</html>
