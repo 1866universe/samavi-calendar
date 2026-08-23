@@ -1,0 +1,37 @@
+# Private
+PRIVATE_README.md
+
+# Excel/macros and generated outputs
+*.xlsm
+*.xlsx
+*.xls
+*.xlk
+*.csv
+*.tmp
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Editor/IDE
+.vscode/
+.idea/
+ln.docstates
+
+/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Local backup files
+*.bak
+*.old
+
+# Build / cache
+.DS_Store
+
+# Python cache, if used later
+__pycache__/
+*.pyc

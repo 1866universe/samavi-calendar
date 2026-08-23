@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Samavi Calendar - An astronomical research model based on meridian transit and lunar angular cycles." />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Samavi Calendar</title>
+  <style>
+    :root {
+      --bg: #020617;
+      --panel: rgba(15, 23, 42, 0.92);
+      --panel-border: rgba(148, 163, 184, 0.18);
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #22c55e;
+      --button-bg: rgba(56, 189, 248, 0.12);
+      --button-border: rgba(56, 189, 248, 0.35);
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(56, 189, 248, 0.16), transparent 38%),
+        radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.10), transparent 32%),
+        linear-gradient(180deg, #020617 0%, #0f172a 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      line-height: 1.7;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 920px;
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 24px;
+      padding: 36px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.18);
+      color: #dbeafe;
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.15;
+      color: #ffffff;
+      letter-spacing: 0.2px;
+    }
+
+    .subtitle {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 72ch;
+      margin: 0 0 22px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .card {
+      border: 1px solid var(--panel-border);
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(15, 23, 42, 0.54);
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      color: #fff;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      color: var(--text);
+      background: var(--button-bg);
+      border: 1px solid var(--button-border);
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    }
+
+    a.button:hover {
+      transform: translateY(-1px);
+      background: rgba(56, 189, 248, 0.18);
+      border-color: rgba(56, 189, 248, 0.55);
+    }
+
+    a.button.primary {
+      background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+      border-color: transparent;
+      color: #ffffff;
+    }
+
+    a.button.primary:hover {
+      background: linear-gradient(135deg, #57c8fb 0%, #169be6 100%);
+    }
+
+    a.button.success {
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      border-color: transparent;
+      color: #ffffff;
+    }
+
+    .note {
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid var(--panel-border);
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .note strong {
+      color: #fff;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 10px;
+      font-size: 0.96rem;
+    }
+
+    .links a {
+      color: #c7f0ff;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      margin-top: 24px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        padding: 24px;
+        border-radius: 20px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      a.button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="badge">1866Universe · Public Release</div>
+
+    <h1>Samavi Calendar</h1>
+
+    <p class="subtitle">
+      An astronomical research model based on meridian transit and lunar angular cycles.
+      This project presents a precise, observation-based approach to calendar analysis and time reference.
+    </p>
+
+    <div class="grid">
+      <section class="card">
+        <h2>English Documentation</h2>
+        <p>Read the official project overview, principles, and release notes in English.</p>
+      </section>
+
+      <section class="card">
+        <h2>مستندات فارسی</h2>
+        <p>مطالعه راهنمای رسمی، اصول پروژه و توضیحات نسخه فارسی.</p>
+      </section>
+
+      <section class="card">
+        <h2>GitHub Releases</h2>
+        <p>Download the official Excel workbooks and versioned release assets.</p>
+      </section>
+
+      <section class="card">
+        <h2>Excel Workbooks</h2>
+        <p>Recommended for Microsoft Excel 365 or Excel 2021 with macros enabled.</p>
+      </section>
+    </div>
+
+    <div class="buttons">
+      <a class="button primary" href="README.md">Open English README</a>
+      <a class="button" href="README_FA.md">Open Persian README</a>
+      <a class="button success" href="https://github.com/1866universe/samavi-calendar/releases" target="_blank" rel="noopener noreferrer">View GitHub Releases</a>
+    </div>
+
+    <div class="note">
+      <strong>Official files are distributed only through GitHub Releases.</strong>
+      The repository contains documentation and project pages, while downloadable workbooks are attached to version tags such as <code>v1.0.0</code>.
+      <div class="links">
+        <a href="https://github.com/1866universe/samavi-calendar" target="_blank" rel="noopener noreferrer">Repository</a>
+        <a href="https://1866universe.github.io/samavi-calendar/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>© 2026 1866Universe</span>
+      <span>Samavi Calendar · Public Documentation Portal</span>
+    </div>
+  </main>
+</body>
+</html>
