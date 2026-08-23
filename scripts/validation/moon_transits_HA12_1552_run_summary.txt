@@ -1,0 +1,32 @@
+Moon Lower-Meridian Transit Dataset — Run Summary
+================================================================
+
+Generated at: 2026-09-18T09:09:32
+Start civil date: 1552-03-24 00:00:00
+End civil date:   1553-03-24 00:00:00
+Start JD: 2288008.5000000000
+End JD:   2288373.5000000000
+Scan step: 4.000 hours
+Root tolerance: 1.000e-11 day
+Detected unique transits: 352
+Solver issues: 0
+Duplicate detections removed: 0
+
+Validation
+----------------------------------------------------------------
+total_roots: 352
+strictly_increasing: True
+duplicate_or_reverse_count: 0
+short_interval_count: 0
+long_interval_count: 0
+severe_gap_count: 0
+minimum_interval_hours: 24.704768791794777
+maximum_interval_hours: 25.05362943559885
+mean_interval_hours: 24.840198666080195
+median_interval_hours: 24.822059702128172
+estimated_expected_count: 353
+count_difference_from_estimate: -1
+
+Interpretation
+----------------------------------------------------------------
+PASS: No structural transit-sequence anomaly was detected.

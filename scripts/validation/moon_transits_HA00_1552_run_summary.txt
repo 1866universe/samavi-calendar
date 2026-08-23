@@ -1,0 +1,23 @@
+Moon Upper-Meridian Transit (HA=00) Dataset — Run Summary
+================================================================
+
+Start civil date: 1552-03-24 00:00:00
+End civil date:   1553-03-24 00:00:00
+Detected unique transits: 353
+Solver issues: 0
+Duplicate detections removed: 0
+
+Validation Metrics
+----------------------------------------------------------------
+total_roots: 353
+strictly_increasing: True
+short_interval_count: 0
+long_interval_count: 0
+severe_gap_count: 0
+minimum_interval_hours: 24.705359894782305
+maximum_interval_hours: 25.05835599079728
+mean_interval_hours: 24.839984407584947
+median_interval_hours: 24.82396700978279
+estimated_expected_count: 353
+count_difference_from_estimate: 0
+status: PASS
